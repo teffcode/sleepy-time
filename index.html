@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleepy Time</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap');
+
+    body {
+      margin: 0;
+      background: Lavender;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header, section {
+      max-width: 300px;
+      text-align: center;
+    }
+
+    section {
+      margin-bottom: 20px;
+    }
+
+    h1, h2 {
+      color: BlueViolet;
+    }
+
+    h2 {
+      font-size: 16px;
+    }
+
+    p {
+      font-size: 12px;
+      margin: 0;
+    }
+
+    #infoBox {
+      display: none;
+    }
+
+    button {
+      border-radius: 20px;
+      padding: 8px 16px;
+      margin: 8px 0 24px;
+      background: BlueViolet;
+      border: none;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    ul li {
+      margin-bottom: 12px;
+      background: PapayaWhip;
+      padding: 8px;
+    }
+
+    .visible {
+      display: block !important;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <header>
+      <h1>¡Levántate sin agotamientos!</h1>
+      <p>Para que tengas una buena noche de descanso, lo ideal es que duermas de 5 a 6 ciclos de aprox. 90 minutos.</p>
+    </header>
+    <section>
+      <h2>Si te duermes ya, <br/> ¿cuáles son los horarios ideales para despertarte?</h2>
+      <button id="getHours">Conocer horarios</button>
+      <div id="infoBox">
+        <p>Teniendo en cuenta que nos demoramos aprox. 14 minutos en dormirnos, si te acuestas ya, los mejores horarios para que te despiertes son:</p>
+        <ul id="hoursBox"></ul>
+        <p>Bonita noche 🌝</p>
+      </div>
+    </section>
+  </div>
+  <script>
+    const infoBox = document.getElementById('infoBox')
+    const hoursBox = document.getElementById('hoursBox')
+    const button = document.getElementById('getHours')
+    const currentDate = new Date()
+    const newDate = new Date()
+
+    for (let i = 1; i <= 6; i++) {
+      newDate.setTime(currentDate.getTime() + ((90 + 14) * i * 60 * 1000))
+      const hourToSleep = `${newDate.getHours()}:${newDate.getMinutes()}`
+
+      li = document.createElement('li')
+      li.innerText = hourToSleep
+      hoursBox.appendChild(li)
+    }
+
+    button.addEventListener('click', () => infoBox.classList.add('visible'))
+  </script>
+</body>
+</html>
